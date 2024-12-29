@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ClickHub product; GAME:1; -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спроси у Эпла!</title>
+</head>
+
+<body id='main'>
+
+    <div>
+
+        <h1 id="answer">Спроси у Эпла!</h1>
+        <input type="text" id="question">
+        <input type="button" value="Спросить" onclick="Ask()">
+
+    </div>
+
+    <script>
+
+        const answers = [
+            "Да",
+            "Нет",
+            "Хз",
+            "Нет конечно",
+            "Конечно",
+            "Да!",
+            "А как ещё",
+            "Иди налоги плати, дебил",
+            "Да, к сожалению",
+            "Отвали",
+            "Хм",
+            "Уже нет)",
+            "Хрр, Пщщ",
+            "Зачем задавать такие вопросы..."
+        ];
+
+        let question = "";
+        let lastQ;
+
+        Ask = () => {
+            question = element("question").value;
+
+            if (!question.includes("?")) {
+                update("answer", 'Вопрос задай, дебил. В вопросе должен быть "?"');
+                return;
+            }
+
+            if (question != lastQ && question != "") {
+                update("answer", "Эпл отвечает: " + answers[random(0, answers.length - 1)]);
+            }
+
+            lastQ = question;
+        }
+
+    </script>
+
+
+    <script>
+        //Системные функции, НЕ ТРОГАТЬ!!!!!!
+
+        const element = (id) => {
+            return document.getElementById(id);
+        }
+
+        const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+        const main = element('main');
+
+        const print = (text, type = 'p') => {
+            const newPart = document.createElement(type);
+            newPart.innerHTML = `${text}`;
+            main.appendChild(newPart);
+
+        }
+        const color = (id, color) => {
+            e = element(id);
+            e.style.color = color;
+        }
+        const bgcolor = (id, color) => {
+            e = element(id);
+            e.style.background = color;
+        }
+        const update = (id, text) => {
+            e = element(id);
+            e.innerHTML = `${text}`;
+        }
+        const content = (id) => {
+            e = element(id);
+            return e.innerHTML;
+        }
+
+        const loop = (func, time) => {
+            return setInterval(func, time);
+        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: #b173c4;
+            font-family: Verdana, sans-serif;
+        }
+
+
+        button {
+            border-style: none;
+            border-radius: 7px;
+            font-size: medium;
+            padding: 12px;
+            font-family: Verdana, sans-serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        p,
+        h2,
+        h1 {
+            color: white;
+        }
+
+        #credit {
+            font-size: small;
+        }
+
+        textarea {
+            font-family: Verdana, sans-serif;
+            padding-top: 10px;
+            outline: none;
+            resize: vertical;
+            overflow: auto;
+            border-radius: 7px;
+        }
+
+        input {
+            font-family: Verdana, sans-serif;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            border-style: none;
+            border-radius: 7px;
+        }
+    </style>
+</body>
+
+</html>
